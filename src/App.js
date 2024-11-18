@@ -3,10 +3,19 @@ import './App.css';
 import TrackList from './TrackList/TrackList';
 import Playlist from './Playlist/Playlist';
 import React, {useState} from 'react';
+import SearchBar from './SearchBar/SearchBar';
+import Spotify from './utils/Spotify';
 
 function App() {
 
   const[playlistTracks, setPlaylistTracks] = useState([]);
+  const[searchResults, setSearchResults] = useState([]);
+
+  const searchSpotify = async(term) => {
+    const tracks = await Spotify.Search(term);
+    setSearchResults(tracks);
+  }
+
   const handlePlaylistUpdate = (track) =>{
     if (playlistTracks.find(savedTrack => savedTrack.id === track.id)){
       return;
@@ -24,22 +33,26 @@ function App() {
     setPlaylistName(newName);
   };
 
-  const mockTracks = [
-    { id: 1, name: 'Track One', artist: 'Artist A', album: 'Album X' },
-    { id: 2, name: 'Track Two', artist: 'Artist B', album: 'Album Y' },
-    { id: 3, name: 'Track Three', artist: 'Artist C', album: 'Album Z' },
-    ];
+  const savePlaylist = () => {
+    const trackUris = playlistTracks.map(track => track.uri);
+    Spotify.savePlaylist(playlistName, trackUris).then(() => {
+      setPlaylistName('New Playlist');
+      setPlaylistTracks([]);
+    });
+  };
 
   return (
     <div className="App">
       <h1>Jammming</h1>
-      <TrackList tracks={mockTracks} onAdd={handlePlaylistUpdate} />
+      <SearchBar searchSpotify={searchSpotify} />
+      <TrackList tracks={searchResults} onAdd={handlePlaylistUpdate} isRemoval={false} />
       <div>
         <Playlist 
           playlistName={playlistName}
           playlistTracks={playlistTracks}
           onNameChange={handlePlaylistNameChange}
           onRemove={handlePlaylistRemove}
+          savePlaylist={savePlaylist}
           />
       </div>
     </div>
