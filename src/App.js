@@ -5,6 +5,8 @@ import Playlist from './Playlist/Playlist';
 import React, {useState} from 'react';
 import SearchBar from './SearchBar/SearchBar';
 import Spotify from './utils/Spotify';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
 
@@ -43,17 +45,31 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Jammming</h1>
-      <SearchBar searchSpotify={searchSpotify} />
-      <TrackList tracks={searchResults} onAdd={handlePlaylistUpdate} isRemoval={false} />
-      <div>
-        <Playlist 
-          playlistName={playlistName}
-          playlistTracks={playlistTracks}
-          onNameChange={handlePlaylistNameChange}
-          onRemove={handlePlaylistRemove}
-          savePlaylist={savePlaylist}
-          />
+      {/* Header Section */}
+      <header className="text-center py-3 text-light bg-dark">
+        <h1>Jammming</h1>
+      </header>
+
+      {/* Content Section */}
+      <div className="container-fluid bg-dark text-light" style={{ height: '100vh' }}>
+        <div className="row pt-5 justify-content-center">
+          {/* Search Section */}
+          <div className="col-md-5 d-flex flex-column align-items-center">
+            <SearchBar searchSpotify={searchSpotify} />
+            <TrackList tracks={searchResults} onAdd={handlePlaylistUpdate} isRemoval={false} />
+          </div>
+
+          {/* Playlist Section */}
+          <div className="col-md-5 d-flex flex-column align-items-center">
+            <Playlist
+              playlistName={playlistName}
+              playlistTracks={playlistTracks}
+              onNameChange={handlePlaylistNameChange}
+              onRemove={handlePlaylistRemove}
+              savePlaylist={savePlaylist}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

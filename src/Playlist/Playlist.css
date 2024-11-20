@@ -1,0 +1,14 @@
+button {
+  background-color: #1db954; /* Spotify green */
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px; /* Soft edges */
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #1ed760; /* Lighter green on hover */
+}

@@ -36,3 +36,52 @@
     transform: rotate(360deg);
   }
 }
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #121212; /* Spotify's dark theme background */
+  font-family: 'Roboto', sans-serif; /* Spotify's font */
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the app container fills at least the full viewport height */
+  background-color: #121212; /* Dark background for the main app container */
+}
+
+.container-fluid {
+  flex: 1; /* Allow the main content area to grow dynamically */
+  padding: 20px; /* Add padding to keep content from sticking to edges */
+  background-color: #121212; /* Ensure this container has the same background */
+}
+
+header {
+  text-align: center;
+  padding: 1rem;
+  background-color: #1db954; /* Spotify green header */
+  font-weight: bold;
+  color: white;
+}
+
+button {
+  background-color: #1db954;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1ed760;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}

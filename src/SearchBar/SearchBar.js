@@ -14,13 +14,13 @@ const SearchBar = ({searchSpotify}) => {
     };
  
     return(
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input type="text" onChange={handleTermChange} value={term} />
-                <button type="submit">Search</button>
-            </form>
-        </div>
-    )
+      <div>
+          <form onSubmit={handleSubmit}>
+              <input type="text" onChange={handleTermChange} value={term} />
+              <button type="submit">Search</button>
+          </form>
+      </div>
+  );
 }
 
 export default SearchBar;
